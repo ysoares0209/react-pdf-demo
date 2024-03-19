@@ -53,27 +53,23 @@ const pdfStyles = StyleSheet.create({
   },
 });
 
-const MyDocument = () => (
-  <Document pageMode="fullScreen">
-    <Page size="A4" style={pdfStyles.body}>
-      <Text style={pdfStyles.title}>ASSURED SHORTHOLD TENANCY AGREEMENT</Text>
-      <Text style={pdfStyles.subtitle}>
-        This document should not be used to create a tenancy where the initial fixed term is to be
-        for more than three years; you should consult a Solicitor as such an agreement must be
-        created by Deed.
-      </Text>
-      <Text
-        style={pdfStyles.pageNumber}
-        render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`}
-        fixed
-      />
-    </Page>
-  </Document>
-);
-
 const PDFWrapper = () => (
   <PDFViewer height={"700"} width={"600"} showToolbar={false}>
-    <MyDocument />
+    <Document pageMode="fullScreen">
+      <Page size="A4" style={pdfStyles.body}>
+        <Text style={pdfStyles.title}>ASSURED SHORTHOLD TENANCY AGREEMENT</Text>
+        <Text style={pdfStyles.subtitle}>
+          This document should not be used to create a tenancy where the initial fixed term is to be
+          for more than three years; you should consult a Solicitor as such an agreement must be
+          created by Deed.
+        </Text>
+        <Text
+          style={pdfStyles.pageNumber}
+          render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`}
+          fixed
+        />
+      </Page>
+    </Document>
   </PDFViewer>
 );
 

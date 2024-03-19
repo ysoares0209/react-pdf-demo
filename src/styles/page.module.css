@@ -8,3 +8,23 @@
   margin-top: 3rem;
   gap: 10rem;
 }
+.leftSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem
+}
+
+.leftSection .inputGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.leftSection .inputGroup input {
+  width: 20rem;
+  height: 2rem;
+  background: white;
+  color: black;
+  border: black;
+  border-radius: 7px;
+  padding: 5px;
+}

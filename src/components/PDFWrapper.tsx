@@ -54,8 +54,8 @@ const pdfStyles = StyleSheet.create({
 });
 
 const MyDocument = () => (
-  <Document>
-    <Page style={pdfStyles.body}>
+  <Document pageMode="fullScreen">
+    <Page size="A4" style={pdfStyles.body}>
       <Text style={pdfStyles.title}>ASSURED SHORTHOLD TENANCY AGREEMENT</Text>
       <Text style={pdfStyles.subtitle}>
         This document should not be used to create a tenancy where the initial fixed term is to be
@@ -72,7 +72,7 @@ const MyDocument = () => (
 );
 
 const PDFWrapper = () => (
-  <PDFViewer>
+  <PDFViewer height={"700"} width={"600"} showToolbar={false}>
     <MyDocument />
   </PDFViewer>
 );

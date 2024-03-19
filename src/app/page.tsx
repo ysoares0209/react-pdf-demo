@@ -1,15 +1,22 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
+import { useDebounce } from "use-debounce";
 import dynamic from "next/dynamic";
 import classes from "@/styles/page.module.css";
 
 const PDFWrapper = dynamic(() => import("../components/PDFWrapper"), { ssr: false });
+const PDFWrapperMemoized = memo(PDFWrapper, (prevProps, nextProps) => {
+  return prevProps.title === nextProps.title && prevProps.subTitle === nextProps.subTitle;
+});
 
 export default function Home() {
   const [title, setTitle] = useState("ASSURED SHORTHOLD TENANCY AGREEMENT");
   const [subtitle, setSubtitle] = useState(
     "This document should not be used to create a tenancy where the initial fixed term is to be for more than three years; you should consult a Solicitor as such an agreement must be created by Deed."
   );
+
+  const [debouncedTitle] = useDebounce(title, 1000);
+  const [debouncedSubtitle] = useDebounce(subtitle, 1000);
 
   return (
     <main className={classes.root}>
@@ -28,7 +35,7 @@ export default function Home() {
         </section>
         {/* LEFT SECTION */}
         <section className={classes.rightSection}>
-          <PDFWrapper title={title} subTitle={subtitle} />
+          <PDFWrapperMemoized title={debouncedTitle} subTitle={debouncedSubtitle} />
         </section>
       </div>
     </main>
